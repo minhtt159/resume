@@ -1,0 +1,208 @@
+\documentclass{article}
+\usepackage[cm]{fullpage}
+\usepackage{color}
+\usepackage{hyperref}
+
+\hypersetup{breaklinks=true,%
+pagecolor=white,%
+colorlinks=true,%
+linkcolor=cyan,%
+urlcolor=MyDarkBlue}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.0,0.45}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formatting parameters  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newlength{\tabin}
+\setlength{\tabin}{1em}
+\newlength{\secsep}
+\setlength{\secsep}{0.1cm}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+\definecolor{contactgray}{gray}{0.3}
+\pagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Template Definitions  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lineunder}{\vspace*{-8pt} \\ \hspace*{-6pt} \hrulefill \\ \vspace*{-15pt}}
+\newcommand{\name}[1]{\begin{center}\textsc{\Huge#1}\\\end{center}}
+\newcommand{\program}[1]{\begin{center}\textsc{#1}\end{center}}
+\newcommand{\contact}[1]{\begin{center}\color{contactgray}{\small#1}\end{center}}
+
+\newenvironment{tabbedsection}[1]{
+  \begin{list}{}{
+      \setlength{\itemsep}{0pt}
+      \setlength{\labelsep}{0pt}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\leftmargin}{\tabin}
+      \setlength{\rightmargin}{\tabin}
+      \setlength{\listparindent}{0pt}
+      \setlength{\parsep}{0pt}
+      \setlength{\parskip}{0pt}
+      \setlength{\partopsep}{0pt}
+      \setlength{\topsep}{#1}
+    }
+  \item[]
+}{\end{list}}
+
+\newenvironment{nospacetabbing}{
+    \begin{tabbing}
+}{\end{tabbing}\vspace{-1.2em}}
+
+\newenvironment{resume_header}{}{\vspace{0pt}}
+
+\newenvironment{resume_section}[1]{
+  \filbreak
+  \vspace{2\secsep}
+  \textsc{\large#1}
+  \lineunder
+  \begin{tabbedsection}{\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{resume_subsection}[2][]{
+  \textbf{#2} \hfill {\footnotesize #1} \hspace{2em}
+  \begin{tabbedsection}{0.5\secsep}
+}{\end{tabbedsection}}
+
+\newenvironment{subitems}{
+  \renewcommand{\labelitemi}{-}
+  \begin{itemize}
+      \setlength{\labelsep}{1em}
+}{\end{itemize}}
+
+\newenvironment{resume_employer}[4]{
+  \vspace{\secsep}
+  \textbf{#1} \\ 
+  \indent {\small #2} \hfill {\footnotesize#3 (#4)}
+  \begin{tabbedsection}{0pt}
+  \begin{subitems}
+}{\end{subitems}\end{tabbedsection}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     Start Document     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+  \begin{resume_header}
+    \name{Minh Tran}
+    \program{}
+    \contact{minhtt159@teamkhunglong.com\hspace{2cm} +31-6-19100317 \hspace{2cm}}
+  \end{resume_header}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  % General information
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{resume_section}{About Me}
+
+    \begin{nospacetabbing}
+      \textbf{Programming Languages} \= C/C++, Python, JavaScript, ObjC/Swift, Bash \\*
+      \textbf{Technical Skills} \> Malware Analyst / Security Research, DevOps Engineer, Data Engineer \\*
+      \textbf{Interests} \> Motorbikes, Mechanical Keyboards, Crypto \\*
+    \end{nospacetabbing}
+
+  \end{resume_section}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Talk about work experiences
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{resume_section}{Work Experience}
+
+    \begin{resume_employer}{ThreatFabric}{Malware Analyst + DevOps}{Amsterdam, NL}{Mar 2022 - Present}
+      \item Developed reliable user's fingerprint \& behaviour sensors using JavaScript
+      \item Developed \textbf{Behaviour Analytics} technology for 7M+ internet/mobile banking users
+    \end{resume_employer}
+
+    \begin{resume_employer}{Vantix, Vingroup}{DevOps Engineer}{Hanoi, VN}{Mar 2021 - Feb 2022}
+      \item Integrated state-of-the-art technology to validate and verify \textbf{ADAS features} in Vinfast's electic vehicles
+      \begin{subitems}
+        \item Microservices architecture design applied to Kubernetes on-premise and Azure
+        \item Enhanced monitoring \& alert system using Prometheus, Grafana and PagerDuty
+        \item Developed benchmarking tools, optimized Docker image size and codes
+        \item Balancing data ingestion and validation with message brokers
+      \end{subitems}
+    \end{resume_employer}
+    
+    \begin{resume_employer}{Viettel Cyber Security, Viettel Group}{Security Researcher}{Hanoi, VN}{Oct 2016 - Feb 2021}
+      \item Organized \textbf{CTF competitions} (\href{https://ascis.vnisa.org.vn/}{ASCIS}, \href{https://www.facebook.com/matesctf/}{MatesCTF}) and challenge authors
+      \item Developed internal security tools and hacking tools
+      \item Analyzed various APT campaigns
+    \end{resume_employer}
+
+  \end{resume_section}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Talk about competition and projects
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{resume_section}{Competitions and Personal Projects}
+
+    \begin{resume_subsection}[2022 - Present]{\href{https://github.com/minhtt159/fruitsap}{Fruitsap} - Open-sourced kubernetes clusters}
+      Highly opinionated template and playground for deploying k3s clusters on Raspberry Pi hardwares
+      \begin{subitems}
+        \item Ansible, Terraform, FluxCD, SOPS - Source manager \& deployments
+        \item Cert-manager, Traefik, External DNS, Cloudflared - Load balancer to expose services to public internet
+        \item Spark, Kafka - Data Exploration engine
+      \end{subitems}
+    \end{resume_subsection}
+
+    \begin{resume_subsection}[2020]{Fuzzilli contributor - Open-sourced}
+      \begin{subitems}
+        \item Maintained patches between \textbf{V8, JavaScriptCore} source and Fuzzilli coverage-guided fuzzer
+        \item Applied improvements to mutators to explore possible code coverages
+      \end{subitems}
+    \end{resume_subsection}
+    
+    \begin{resume_subsection}[2019]{Chromium / PDFium contributor - Open-sourced}
+      \begin{subitems}
+      \item Fixed multiple Use-after-free bugs related to XFA modules in PDFium project 
+      \end{subitems}
+    \end{resume_subsection}
+
+    \begin{resume_subsection}{CTF / Hacking competitions}
+      \begin{subitems}
+        \item 1st @ UTP HAX 2016 by CyberSOCKS (Malaysia)
+        \item 1st @ CTF for Vietnamese universities students 2016 by VNISA 
+        \item 1st @ CodeWar 2017 by Framgia Inc. (now Sun*)
+        \item 3rd @ Cyber SEA Game 2017 by NEC Corporation (Thailand)
+        \item 2nd @ CTF for Vietnamese universities students 2017 by VNISA 
+      \end{subitems}
+    \end{resume_subsection}
+
+  \end{resume_section}
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  % Talk about Education
+  %%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{resume_section}{Education and certifications}
+
+    \begin{resume_subsection}[Hanoi (2015-2021)]{University of Engineering and Technology, Vietnam National University}
+      \begin{subitems}
+        \item Major: Computer Science
+      \end{subitems}
+    \end{resume_subsection}
+
+    \begin{resume_subsection}[Nov 2020]{TOEIC Certificate}
+      \begin{subitems}
+        \item Score 935
+      \end{subitems}
+    \end{resume_subsection}
+
+    \begin{resume_subsection}[Jun 2021]{Azure Administrator Associate}
+      \begin{subitems}
+        \item Issued Jun 2021 · Expires Jun 2023
+      \end{subitems}
+    \end{resume_subsection}
+
+  \end{resume_section}
+
+\end{document}

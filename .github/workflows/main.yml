@@ -29,6 +29,7 @@ jobs:
           root_file: latex_resume.tex
       
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: actions/upload-artifact@v2
         with:
-          files: latex_resume.pdf
+          name: PDF
+          path: latex_resume.pdf
